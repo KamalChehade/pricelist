@@ -1,0 +1,24 @@
+.nav-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Set display to flex */
+}
+
+.nav-item {
+  margin-right: 10px; /* Add spacing between items */
+}
+
+.nav-link {
+  text-decoration: none; /* Remove default underline */
+  color: black; /* Set link color */
+}
+
+.nav-link:hover {
+  color: blue; /* Change link color on hover */
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface
+{
+  background-color: transparent;
+}

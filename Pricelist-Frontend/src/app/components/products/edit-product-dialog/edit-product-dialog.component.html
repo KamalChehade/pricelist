@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>Edit Product</h2>
+<mat-dialog-content>
+  <form [formGroup]="editForm" (ngSubmit)="updateProduct()">
+    <!-- Existing fields -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input formControlName="name" id="name" class="form-control" type="text">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <angular-editor formControlName="description" id="description" [placeholder]="'Enter description...'" [config]="editorConfig"></angular-editor>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input formControlName="price" id="price" class="form-control" type="number">
+    </div>
+    <div class="form-group">
+      <label for="dealerPrice">Dealer Price</label>
+      <input formControlName="dealerPrice" id="dealerPrice" class="form-control" type="number">
+    </div>
+
+    <!-- YouTube Link Field -->
+    <div class="form-group">
+      <label for="youtubeLink">YouTube Link</label>
+      <input formControlName="youtubeLink" id="youtubeLink" class="form-control" type="text">
+      <button type="button" (click)="clearYoutubeLink()" class="btn btn-secondary">Clear</button>
+      <div *ngIf="editForm.get('youtubeLink')?.invalid && (editForm.get('youtubeLink')?.dirty || editForm.get('youtubeLink')?.touched)" class="alert alert-danger">
+         <div *ngIf="editForm.get('youtubeLink')?.errors?.['pattern']">Invalid YouTube URL.</div>
+      </div>
+    </div>
+
+    <!-- Other fields -->
+    <div class="form-group">
+      <label for="onDiscount" class="switch-label">On Discount</label>
+      <div class="switch-container">
+        <input
+          formControlName="onDiscount"
+          id="onDiscount"
+          class="switch"
+          type="checkbox"
+          (change)="toggleDiscount()">
+      </div>
+    </div>
+
+    <div *ngIf="editForm.get('onDiscount')?.value">
+      <div class="form-group">
+        <label for="discountPrice">Discount Price</label>
+        <input formControlName="discountPrice" id="discountPrice" class="form-control" type="number">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="moq" class="switch-label">Promo</label>
+      <div class="switch-container">
+        <input
+          formControlName="moq"
+          id="moq"
+          class="switch"
+          type="checkbox"
+          (change)="toggleMoq()">
+      </div>
+    </div>
+
+    <div *ngIf="editForm.get('moq')?.value">
+      <div class="form-group">
+        <label for="moqQuantity">M.O.Q Quantity</label>
+        <input formControlName="moqQuantity" id="moqQuantity" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label for="moqPrice">M.O.Q Price</label>
+        <input formControlName="moqPrice" id="moqPrice" class="form-control" type="number">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="showAdvertisementButton" class="switch-label">Advertisement</label>
+      <div class="switch-container">
+        <input formControlName="showAdvertisementButton"
+        id="showAdvertisementButton"
+        class="switch"
+        type="checkbox"
+        (change)="toggleshowAdvertisementButton()">
+      </div>
+    </div>
+
+    <div *ngIf="editForm.get('showAdvertisementButton')?.value">
+      <div class="form-group">
+        <label for="thumbnailImage">Advertisement Image</label>
+        <input id="thumbnailImage" class="form-control" type="file" (change)="handleFileInput($event)">
+      </div>
+    </div>
+
+    <button mat-button type="submit" [disabled]="editForm.invalid">Save</button>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,127 @@
+
+
+.myProductSwiper {
+  width: 100%;
+  max-width: 2000px;
+  margin: -43px auto 0;
+  overflow: hidden;
+  position: relative;
+  height: 300px; /* Set a default height */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.brand-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+img {
+  max-width: 124%;
+  max-height: 120px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s, transform 0.3s ease; /* Add transform transition */
+}
+
+.swiper-pagination {
+  bottom: 10px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1px;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev {
+  left: 10px;
+  top: calc(50% - -14px); /* Adjust the value according to your design */
+}
+
+.swiper-button-next {
+  right: 10px;
+  top: calc(50% - -14px); /* Adjust the value according to your design */
+}
+
+
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 25px;
+}
+
+.swiper-scrollbar {
+  display: none;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  top: 210px;
+}
+
+@media screen and (max-width: 768px) {
+  .myProductSwiper {
+    height: 220px; /* Adjusted height for smaller screens */
+    margin-top: -42px;
+  }
+
+  img {
+    max-height: 120px; /* Adjust image height for mobile view */
+    height: auto; /* Ensure images scale properly */
+  }
+
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    top: 150px; /* Adjust pagination position */
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none; /* Hide navigation arrows on mobile view */
+  }
+}
+@media screen and (max-width: 540px) {
+  .myProductSwiper {
+    height: 220px; /* Adjusted height for smaller screens */
+    margin-top: -42px;
+  }
+
+  .swiper-slide {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  img {
+    max-width: 130% !important;
+    max-height: 120px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s, transform 0.3s ease; /* Add transform transition */
+  }
+
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    top: 150px; /* Adjust pagination position for smaller screens */
+  }
+}

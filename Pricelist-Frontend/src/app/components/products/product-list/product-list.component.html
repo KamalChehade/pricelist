@@ -1,0 +1,140 @@
+<h2 mat-dialog-title>
+  <div class="title-search-container">
+    <span>Products</span>
+    <div class="SearchInputContainer">
+      <input
+        type="text"
+        name="text"
+        class="SearchInput"
+        id="SearchInput{{ categoryId }}"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchInput()"
+        placeholder="Search Products"
+      />
+      <label for="SearchInput" class="labelforsearch">
+        <svg viewBox="0 0 512 512" class="searchIcon">
+          <path
+            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+          ></path>
+        </svg>
+      </label>
+    </div>
+  </div>
+</h2>
+<mat-dialog-content>
+  <div class="container-fluid">
+    <!-- Product Table -->
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>
+            <fa-icon
+              matTooltip="Add"
+              matTooltipPosition="left"
+              class="add-icon"
+              [icon]="faSquarePlus"
+              (click)="openAddDialog()"
+            ></fa-icon>
+          </th>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Dealer Price</th>
+          <th>Advertisement Image</th>
+          <th>YouTube Video</th> <!-- New column -->
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredProducts.length > 0">
+        <tr *ngFor="let p of filteredProducts; let i = index">
+          <td scope="row">{{ i + 1 }}</td>
+          <td>{{ p.name }}</td>
+          <td [innerHTML]="p.description"></td>
+          <td>{{ p.price }} $</td>
+          <td>
+            {{ p.dealerPrice !== null ? p.dealerPrice + ' $' : 'Not available' }}
+          </td>
+          <td>
+            <ng-container *ngIf="p.showAdvertisementButton">
+              <img [src]="p.thumbnailImage" alt="Thumbnail" style="max-width: 100px" />
+            </ng-container>
+            <ng-container *ngIf="!p.showAdvertisementButton">
+              <span>No Advertisement</span>
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="p.youtubeLink; else noVideo">
+              <!-- Embedded YouTube Video -->
+              <div>
+                 <iframe
+                  [src]="getSafeYouTubeUrl(p.youtubeLink)"
+                  width="400"
+                  height="230"
+                  frameborder="0"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </ng-container>
+            <!-- No Video Message -->
+            <ng-template #noVideo>
+              <span>No Video</span>
+            </ng-template>
+          </td>
+
+          <td (click)="toggleStatus(p)">
+            <svg *ngIf="p.status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="status-icon green">
+              <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+            </svg>
+            <svg *ngIf="!p.status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="status-icon red">
+              <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+            </svg>
+          </td>
+          <td>
+            <fa-icon
+              matTooltip="Update"
+              matTooltipPosition="left"
+              class="edit-icon"
+              [icon]="faPencil"
+              (click)="openEditDialog(p)"
+            ></fa-icon>
+            <fa-icon
+              matTooltip="Delete"
+              matTooltipPosition="right"
+              class="delete-icon"
+              [icon]="faTrash"
+              id="trash-icon"
+              (click)="deleteProduct(p.id)"
+            ></fa-icon>
+            <fa-icon
+              matTooltip="Gallery"
+              matTooltipPosition="left"
+              class="image-icon"
+              [icon]="faImage"
+              id="image-icon"
+              (click)="openImageGallery(p.id)"
+            ></fa-icon>
+            <fa-icon
+              matTooltip="Promo"
+              matTooltipPosition="right"
+              class="promo-icon action-icons"
+              [icon]="faBullhorn"
+              id="Promo-icon"
+              (click)="openPromoDialog(p.id , p.name)"
+            ></fa-icon>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="filteredProducts.length === 0">
+        <tr>
+          <td colspan="9">
+            <p>No products are available!</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button class="red-button" style="color: white" (click)="onCancel()">Exit</button>
+</mat-dialog-actions>

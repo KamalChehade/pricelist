@@ -1,0 +1,27 @@
+<div class="loading-container" *ngIf="isLoadingSubcategories">
+  <!-- Loading indicator -->
+  <div class="center-loading">
+    <app-loading-spinner size="2.8rem" color="#183153"></app-loading-spinner>
+  </div>
+</div>
+
+<div class="container1">
+  <!-- <div><a class="back-button" (click)="goBack()" *ngIf="!isLoadingSubcategories">
+    <fa-icon [icon]="faAngleDoubleLeft"></fa-icon>
+  </a>
+</div> -->
+  <div class="container">
+    <div class="category-title" *ngIf="!isLoadingSubcategories" [@fadeInOut]>
+      <span><strong>{{ categoryTitle }}</strong></span>
+    </div>
+
+    <!-- Subcategories list -->
+    <div *ngIf="!isLoadingSubcategories">
+      <div *ngFor="let subcategory of subcategories" (click)="navigateToProducts(categoryId, subcategory.id)" class="subcat-div">
+        <button class="subcategory-button">
+          <span>{{ subcategory.name }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<div *ngIf="product" class="product-container">
+  <!-- Main Product Image -->
+  <div class="product-imgs">
+    <div class="img-display">
+      <div class="img-showcase">
+        <img [src]="product.images![0]" alt="Product image">
+      </div>
+    </div>
+    <div class="img-select" *ngIf="product.images!.length > 1">
+      <div class="img-item" *ngFor="let image of product.images; let i = index">
+        <a [attr.data-id]="i" (click)="openProductImagesDialog(i)">
+          <img [src]="image" alt="Product image">
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Product Content -->
+  <div class="product-content">
+    <!-- Brand Name -->
+    <div *ngIf="brandName" class="product-brand">{{ brandName }}</div>
+    <h2 class="product-title">{{ product.name }}</h2>
+
+    <div class="product-price">
+      <p *ngIf="product.onDiscount">
+        <span class="last-price">Old Price: <span>{{ product.price }}$</span></span><br>
+        <span class="new-price">New Price: <span>{{ product.discountPrice }}$</span></span>
+      </p>
+      <p *ngIf="!product.onDiscount">
+        <span class="new-price">Price: <span>{{ product.price }}$</span></span>
+      </p>
+
+      <!-- Dealer Price -->
+      <p *ngIf="product.dealerPrice && isDealerLoggedIn">
+        <span class="dealer-price">Dealer Price: <span>{{ product.dealerPrice }}$</span></span>
+      </p>
+
+      <!-- Promo Details -->
+      <div *ngIf="product.promos && product.promos.length > 0">
+        <span class="promotions-title">Promotions:</span>
+        <ul class="promo-text">
+          <li *ngFor="let promo of product.promos">
+            <!-- Discount Promo -->
+            <div *ngIf="promo.promoType === 'Retail Promo'">
+              <p class="promo-text" *ngIf="promo.additionalProductQuantity && promo.additionalProductQuantity > 1">
+                Buy {{ promo.additionalProductQuantity }} <a href="#">{{ promo.additionalProductName }}</a> and get this product for {{ promo.promoPrice }}$
+              </p>
+              <p class="promo-text" *ngIf="!promo.additionalProductQuantity || promo.additionalProductQuantity === 1">
+                Buy <a href="#">{{ promo.additionalProductName }}</a> and get this product for {{ promo.promoPrice }}$
+              </p>
+            </div>
+
+            <!-- Gift Promo -->
+            <div *ngIf="promo.promoType === 'Gift Promo'">
+              <p class="promo-text">Buy it and get a free gift: <a href="#">{{ promo.giftProductName }}</a></p>
+            </div>
+
+            <!-- Combo Promo -->
+            <div *ngIf="promo.promoType === 'Combo Promo' && isDealerLoggedIn">
+              <p class="promo-text" *ngIf="promo.additionalProductQuantity && promo.additionalProductQuantity > 1">
+                Buy {{ promo.additionalProductQuantity }} <a href="#">{{ promo.additionalProductName }}</a> and get a special promo price: {{ promo.promoPrice }}$
+              </p>
+              <p class="promo-text" *ngIf="!promo.additionalProductQuantity || promo.additionalProductQuantity === 1">
+                Buy <a href="#">{{ promo.additionalProductName }}</a> and get a special promo price: {{ promo.promoPrice }}$
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    <h2>About this item:</h2>
+    <ul>
+      <li>Category: <span>{{ categoryName }}</span></li>
+      <!-- Include other dynamic details here -->
+    </ul>
+
+    <div class="purchase-info">
+      <button type="button" class="btn" (click)="sendWhatsAppMessage(product)">Buy Now</button>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/QuantumLeb"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/quantumleb/?hl=en"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/company/quantum-trading-co/"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+
+  <!-- Embedded YouTube Video -->
+  <div *ngIf="product.youtubeLink" class="youtube-video">
+    <h3>Watch the Video:</h3>
+    <iframe
+      width="560"
+      height="315"
+      [src]="youtubeEmbedUrl"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <!-- Tabset for Product Description -->
+  <div class="tabset">
+    <input type="radio" name="tabset" id="tab1" aria-controls="product-description" checked>
+    <label for="tab1">Description</label>
+
+    <div class="tab-panels">
+      <section id="product-description" class="tab-panel">
+        <p [innerHTML]="product.description"></p>
+      </section>
+    </div>
+  </div>
+
+</div>

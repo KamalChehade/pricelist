@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Product Images Gallery</h2>
+<mat-dialog-content>
+  <div class="container-fluid">
+    <!-- Product images table -->
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>
+            <!-- Add button -->
+            <fa-icon
+              matTooltip="Add"
+              matTooltipPosition="left"
+              class="add-icon"
+              [icon]="faSquarePlus"
+              (click)="openAddDialog()"
+            ></fa-icon>
+          </th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Display product images -->
+        <tr *ngFor="let image of images; let i = index">
+          <td scope="row">{{ i + 1 }}</td>
+          <td>
+            <!-- Image preview -->
+            <img [src]="image.imagePath" alt="Product Image" class="product-image" />
+          </td>
+          <td>
+            <!-- Edit and delete icons -->
+            <fa-icon
+              matTooltip="Update"
+              matTooltipPosition="left"
+              class="edit-icon"
+              [icon]="faPencil"
+              (click)="openEditDialog(image.id)"
+            ></fa-icon>
+
+            <fa-icon
+              matTooltip="Delete"
+              matTooltipPosition="right"
+              class="delete-icon"
+              [icon]="faTrash"
+              id="trash-icon"
+              (click)="deleteProduct(image.id)"
+            ></fa-icon>
+          </td>
+        </tr>
+        <!-- If no images available -->
+        <tr *ngIf="images.length === 0">
+          <td colspan="3">
+            <p>No product images available!</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!-- Exit button -->
+  <button mat-button class="red-button" (click)="onCancel()">Exit</button>
+</mat-dialog-actions>

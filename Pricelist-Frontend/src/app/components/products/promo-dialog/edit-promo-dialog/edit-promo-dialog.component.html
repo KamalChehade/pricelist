@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Edit Promo</h2>
+
+<mat-form-field>
+  <mat-label>Promo Type</mat-label>
+  <mat-select [(ngModel)]="promo.promoType" name="promoType" required>
+    <mat-option value="Retail Promo">Retail Promo</mat-option>
+    <mat-option value="Combo Promo">Combo Promo</mat-option>
+    <mat-option value="Gift Promo">Gift Promo</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<!-- Promo Price field, hidden if Gift Promo is selected -->
+<mat-form-field *ngIf="promo.promoType !== 'Gift Promo'">
+  <mat-label>Promo Price</mat-label>
+  <input matInput type="number" [(ngModel)]="promo.promoPrice" name="promoPrice" required>
+</mat-form-field>
+
+<!-- Dropdown for selecting Additional Product -->
+<mat-form-field *ngIf="promo.promoType === 'Retail Promo' || promo.promoType === 'Combo Promo'">
+  <mat-label>Additional Product</mat-label>
+  <input type="text" placeholder="Select additional product" aria-label="Search additional products"
+         matInput [formControl]="additionalProductControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onAdditionalProductSelected($event)">
+    <mat-option *ngFor="let product of filteredProducts" [value]="product.name">
+      {{ product.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field *ngIf="promo.promoType === 'Retail Promo' || promo.promoType === 'Combo Promo'">
+  <mat-label>Additional Product Quantity</mat-label>
+  <input matInput type="number" [(ngModel)]="promo.additionalProductQuantity" (ngModelChange)="generateDescription()" name="additionalProductQuantity">
+</mat-form-field>
+
+<!-- Mat-autocomplete for selecting Gift Product -->
+<mat-form-field *ngIf="promo.promoType === 'Gift Promo'">
+  <input type="text" placeholder="Gift product" aria-label="Search products"
+         matInput [formControl]="myControl" [matAutocomplete]="giftAuto">
+  <mat-autocomplete #giftAuto="matAutocomplete" (optionSelected)="onGiftProductSelected($event)">
+    <mat-option *ngFor="let product of filteredProducts" [value]="product.name">
+      {{ product.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<!-- Display Auto-Generated Description -->
+<mat-form-field *ngIf="promo.promoType === 'Retail Promo' || promo.promoType === 'Combo Promo'">
+  <mat-label>Description</mat-label>
+  <textarea matInput [(ngModel)]="promo.description" name="description"></textarea>
+  <mat-label *ngIf="promo.description">{{ promo.description }}</mat-label>
+</mat-form-field>
+
+<mat-dialog-actions>
+  <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
+  <button mat-button color="primary" [disabled]="!isValidForm()" (click)="savePromo()">Save</button>
+</mat-dialog-actions>

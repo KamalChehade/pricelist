@@ -1,0 +1,76 @@
+<div id="overlay" class="overlay" *ngIf="suggestions.length > 0 || showNoResults" (click)="closeSuggestions()"></div>
+<header class="d-flex justify-content-between align-items-center">
+  <div class="logo">
+    <a href="/">
+      <img [src]="environment.assetUrl + '/img/QuantumStamp.png'" class="logo-img" alt="QuantumStamp Logo">
+    </a>
+  </div>
+  <div class="text-center">
+    <p class="title">Active Price List</p>
+    <p class="date">{{ dateTime | date: 'MM-dd-YYYY' }}</p>
+  </div>
+  <div>
+    <div class="menu-icon"  (click)="openMenu()">
+      <i class="{{ menu_icon }}"></i>
+    </div>
+    <div class="desktop_menu" (click)="closeSuggestions()" [class.mobile_menu]="menuValue">
+      <ul>
+        <li>
+          <div>
+            <div class="InputContainer">
+              <input type="text" name="text" class="input" id="input" placeholder="Search Products..." [(ngModel)]="query" (keydown.enter)="onSearch()" (keyup)="fetchSuggestions()">
+              <div class="border"></div>
+              <label for="input" class="labelforsearch">
+                <ng-container *ngIf="!loading; else spinner">
+                  <a (click)="onSearch()">
+                    <svg viewBox="0 0 512 512" class="searchIcon">
+                      <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                    </svg>
+                  </a>
+                </ng-container>
+              </label>
+            </div>
+            <!-- Suggestions container -->
+            <div class="suggestions-container" *ngIf="suggestions.length > 0 || showNoResults">
+              <ng-container *ngIf="showNoResults; else suggestionsList">
+                <div class="suggestion">
+                  <div class="suggestion-details">
+                    Your search returned 0 results
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #suggestionsList>
+                <div *ngFor="let suggestion of suggestions.slice(0, 6)" class="suggestion" (click)="selectSuggestion(suggestion)">
+                  <div class="suggestion-info">
+                    <img [src]="suggestion.image" alt="Suggestion Image" class="suggestion-image">
+                    <div class="suggestion-details">
+                      <p class="suggestion-name">{{ suggestion.name }}</p>
+                      <p [ngClass]="{ 'discounted-price': suggestion.onDiscount, 'not-discounted-price': !suggestion.onDiscount }">
+                        <span *ngIf="suggestion.onDiscount" class="original-price">{{ suggestion.price }}$</span>
+                        {{ !suggestion.onDiscount ? suggestion.price + "$" : "" }}
+                        <span *ngIf="suggestion.onDiscount">{{ suggestion.discountPrice }}$</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="view-all-container" *ngIf="suggestions.length > 6">
+                  <a (click)="viewAllProducts()" class="view-all-link">View All {{ suggestions.length }} Products</a>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a (click)="openDealerDialog()" class="dealer-link">
+            Dealer
+            <span [ngClass]="{ 'dot': true, 'green': isDealerLoggedIn }"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<ng-template #spinner>
+  <div class="custom-loader"></div>
+</ng-template>

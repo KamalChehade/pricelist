@@ -1,0 +1,25 @@
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+  .table tbody td {
+    display: block;
+    text-align: center;
+    padding: 8px; /* Adjust as needed */
+  }
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase; /* Optional */
+    margin-bottom: 5px; /* Adjust as needed */
+  }
+}
+
+/* Media query for smartphones */
+@media (max-width: 576px) {
+  .table tbody td {
+    text-align: left;
+  }
+}

@@ -1,0 +1,389 @@
+/* General Styles */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.center-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.container {
+  width: 88vw;
+  margin: 0 auto;
+}
+
+.lg-title, .md-title, .sm-title {
+  font-family: 'Roboto', sans-serif;
+  padding: 0.6rem 0;
+  text-transform: capitalize;
+}
+
+.lg-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1.3rem 0;
+  opacity: 0.9;
+}
+
+.md-title {
+  font-size: 2rem;
+}
+
+.sm-title {
+  font-weight: 300;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.text-light {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  opacity: 0.5;
+  margin: 0.4rem 0;
+}
+
+/* Product section */
+.products {
+  padding: 3.2rem 0;
+}
+
+.products .text-light {
+  text-align: center;
+  width: 70%;
+  margin: 0.9rem auto;
+}
+
+.product {
+  margin: 1rem;
+  position: relative;
+  width: 280px; /* Adjust card width */
+}
+
+.product-content {
+  background: #ededed; /* Replacing var(--gray) */
+  padding: 1rem; /* Adjust card padding */
+  cursor: pointer;
+}
+
+.product-img {
+  background: none;
+  box-shadow: none;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: transform 0.6s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-img img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease; /* Adjust transition duration */
+}
+
+.product:hover .product-img img {
+  transform: scale(1.1); /* Scale up the image on hover */
+}
+
+.product-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+  opacity: 1; /* Ensure buttons are always visible */
+  transition: opacity 0.6s ease;
+}
+
+.btn-cart,
+.btn-buy {
+  background: #40c9a2; /* Replacing var(--carribean-green) */
+  border: 1px solid black;
+  padding: 0.8rem 0;
+  width: 125px;
+  font-family: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.6s ease;
+  z-index: 500;
+}
+
+.btn-cart {
+  background: black;
+  color: white;
+}
+
+.btn-cart:hover {
+  background: #40c9a2; /* Replacing var(--carribean-green) */
+}
+
+.btn-buy {
+  background: white;
+}
+
+.btn-buy:hover {
+  background: #40c9a2; /* Replacing var(--carribean-green) */
+  color: #fff;
+}
+
+.product-info {
+  background: #dddddd; /* Light gray */
+  padding: 1rem; /* Adjust info section padding */
+}
+
+.product-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating span {
+  color: #40c9a2; /* Replacing var(--carribean-green) */
+}
+
+.product-name {
+  color: black;
+  display: block;
+  text-decoration: none;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.product-price {
+  padding-top: 0.6rem;
+  padding-right: 0.6rem;
+  display: inline-block;
+}
+
+.product-price:first-of-type {
+  color: #40c9a2; /* Replacing var(--carribean-green) */
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.off-info .sm-title {
+  background: #40c9a2; /* Replacing var(--carribean-green) */
+  color: white;
+  display: inline-block;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  z-index: 1;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.product-collection {
+  padding: 3.2rem 0;
+}
+
+.product-collection-wrapper {
+  padding: 3.2rem 0;
+}
+
+.product-col-left {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.product-col-r-top {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 50vh;
+  padding: 2rem 1.5rem 3.2rem;
+  margin: 5px;
+}
+
+.product-col-r-bottom > div:first-child {
+  background: #eaa001; /* Gold color */
+}
+
+.product-col-r-bottom > div:last-child {
+  background: #0090ff; /* Blue color */
+}
+
+.product-col-content {
+  text-align: center;
+  color: white;
+}
+
+.product-collection .text-light {
+  opacity: 1;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.btn-dark {
+  background: black;
+  color: white;
+  outline: 0;
+  border-radius: 25px;
+  padding: 0.7rem 1rem;
+  border: 0;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.btn-dark:hover {
+  background: #40c9a2; /* Replacing var(--carribean-green) */
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .pagination-filter-container {
+    flex-direction: column;
+  }
+
+  .pagination-,
+  .filter-dropdown {
+    width: 100%;
+    margin-bottom: 10px; /* Add margin between elements */
+  }
+
+  .filter-dropdown select {
+    width: 100%;
+    padding: 6px; /* Adjust padding */
+    font-size: 12px; /* Adjust font size */
+  }
+
+  .pagination- mat-paginator {
+    width: 100%;
+  }
+
+  .product-items {
+    display: grid;
+    grid-template-columns: 1fr !important; /* Display 1 card per row on mobile screens */
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .product-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Display 3 cards per row on medium screens */
+  }
+
+  .product-col-r-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards per row in the bottom section on medium screens */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .product-items {
+    grid-template-columns: repeat(4, 1fr); /* Display 4 cards per row on large screens */
+  }
+
+  .product {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .products .text-light {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1336px) {
+  .product-items {
+    grid-template-columns: repeat(4, 1fr); /* Display 4 cards per row on extra-large screens */
+  }
+
+  .product-collection-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards per row in the collection wrapper on extra-large screens */
+  }
+
+  .flex {
+    height: 60vh; /* Adjusted height for certain section */
+  }
+
+  .product-col-left {
+    height: 121.5vh; /* Adjusted height for certain section */
+  }
+}
+
+.products .container {
+  position: relative;
+}
+
+.pagination-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pagination- {
+  display: flex;
+  align-items: center;
+}
+
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.filter-dropdown select {
+  padding: 10px; /* Adjust padding */
+  border: none;
+  font-size: 14px; /* Adjust font size */
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+}
+/* Custom class for the dialog container */
+.product-description-dialog .mat-dialog-container {
+  max-height: 90vh; /* Ensure the dialog does not exceed 90% of viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional: Ensure the content within the dialog scrolls if necessary */
+.product-description-dialog .product-content {
+  flex: 1; /* Take up available space */
+  overflow-y: auto; /* Enable scrolling within the content area */
+}

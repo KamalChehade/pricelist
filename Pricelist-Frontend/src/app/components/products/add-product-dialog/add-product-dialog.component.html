@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Add Product</h2>
+<mat-dialog-content>
+  <div class="form-group" (keydown.enter)="handleEnterKey($event)">
+    <label for="productName">Name</label>
+    <input [(ngModel)]="newProduct.name" id="productName" class="form-control" type="text" name="productName" #productName="ngModel" required>
+    <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="alert alert-danger">
+      <div *ngIf="productName.errors?.['required']">Name is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="productDescription">Description</label>
+    <angular-editor [(ngModel)]="newProduct.description" id="productDescription" name="productDescription" [placeholder]="'Enter description...'" [config]="editorConfig"></angular-editor>
+  </div>
+  <div class="form-group">
+    <label for="productPrice">Price</label>
+    <input [(ngModel)]="newProduct.price" id="productPrice" class="form-control" type="number" name="productPrice" #productPrice="ngModel" required>
+    <div *ngIf="productPrice.invalid && (productPrice.dirty || productPrice.touched)" class="alert alert-danger">
+      <div *ngIf="productPrice.errors?.['required']">Price can't be negative</div>
+      <div *ngIf="productPrice.errors?.['maxPriceExceeded']">Price can't be negative</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="productDealerPrice">Dealer Price</label>
+    <input [(ngModel)]="newProduct.dealerPrice" id="productDealerPrice" class="form-control" type="number" name="productDealerPrice" #productDealerPrice="ngModel" required>
+    <div *ngIf="productDealerPrice.invalid && (productDealerPrice.dirty || productDealerPrice.touched)" class="alert alert-danger">
+      <div *ngIf="productDealerPrice.errors?.['required']">Dealer Price is required.</div>
+    </div>
+  </div>
+  <!-- Optional YouTube Link Field -->
+  <div class="form-group">
+    <label for="youtubeLink">YouTube Link</label>
+    <input [(ngModel)]="newProduct.youtubeLink" id="youtubeLink" class="form-control" type="text" name="youtubeLink" #youtubeLink="ngModel">
+     <div *ngIf="youtubeLink.invalid && (youtubeLink.dirty || youtubeLink.touched)" class="alert alert-danger">
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="thumbnailImage">Advertisement Image</label>
+    <input type="file" (change)="handleFileInput($event)" id="thumbnailImage" class="form-control">
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" [disabled]="!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.dealerPrice" (click)="addProduct()">Save</button>
+</mat-dialog-actions>

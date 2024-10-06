@@ -1,0 +1,14 @@
+<form #newSubcategoryForm="ngForm" (ngSubmit)="confirmAdd()">
+  <h2 mat-dialog-title>Add Subcategory</h2>
+  <mat-dialog-content>
+    <div class="form-group">
+      <label for="subcategoryName">Name</label>
+      <input [(ngModel)]="newSubcategory.name" id="subcategoryName" name="subcategoryName" class="form-control" type="text" required (keydown.enter)="confirmAdd()">
+      <!-- Add any necessary validation messages here -->
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" type="submit" [disabled]="!newSubcategoryForm.valid || isSubmitting">Add</button>
+  </mat-dialog-actions>
+</form>

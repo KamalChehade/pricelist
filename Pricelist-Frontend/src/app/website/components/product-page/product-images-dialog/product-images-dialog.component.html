@@ -1,0 +1,23 @@
+<!-- Template for ProductImagesDialogComponent -->
+<a class="back-button" (click)="goBack()">
+  <fa-icon [icon]="faXmark"></fa-icon>
+</a>
+<div class="swiper-container myProductSwiper" #swiperContainer>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let image of data.images">
+      <div class="product-item">
+        <ng-container *ngIf="isMobile; else nonMobileView">
+          <pinch-zoom style="overflow: hidden; background-color: rgba(0, 0, 0, 0);">
+            <img [src]="image" alt="Product Image">
+          </pinch-zoom>
+        </ng-container>
+        <ng-template #nonMobileView>
+          <img [src]="image" alt="Product Image">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>

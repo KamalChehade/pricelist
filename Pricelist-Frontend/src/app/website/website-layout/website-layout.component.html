@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <app-header></app-header>
+  <div class="main-content">
+    <app-brand-nav (brandSelected)="handleBrandSelection($event)"></app-brand-nav>
+
+     <app-breadcrumb></app-breadcrumb>
+
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="overlay" *ngIf="loading"></div>
+  <app-custom-spinner *ngIf="loading"></app-custom-spinner>
+  <app-footer></app-footer>
+</div>

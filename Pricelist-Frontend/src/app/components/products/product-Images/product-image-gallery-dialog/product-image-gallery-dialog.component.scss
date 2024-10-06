@@ -1,0 +1,14 @@
+.product-image{
+  max-width: 150px;
+  max-height: 100px;
+
+}.red-button {
+  color: white;
+  background-color: red;
+}
+.thead-light{
+  position: sticky;
+  top: 0;
+  background-color: white; /* Adjust as needed */
+  z-index: 1; /* Ensure it's above other content */
+}

@@ -1,0 +1,415 @@
+.InputContainer {
+  height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding-left: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.input {
+  width: 170px;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.9em;
+  caret-color: rgb(255, 81, 0);
+}
+
+.labelforsearch {
+  cursor: text;
+  padding: 0px 12px;
+}
+
+.searchIcon {
+  width: 13px;
+  cursor: pointer;
+}
+
+.border {
+  height: 40%;
+  width: 1.3px;
+  background-color: rgb(223, 223, 223);
+}
+
+.micIcon {
+  width: 12px;
+}
+
+.micButton {
+  padding: 0px 15px 0px 12px;
+  border: none;
+  background-color: transparent;
+  height: 40px;
+  cursor: pointer;
+  transition-duration: .3s;
+}
+
+.searchIcon path {
+  fill: rgb(114, 114, 114);
+}
+
+.micIcon path {
+  fill: rgb(255, 81, 0);
+}
+
+.micButton:hover {
+  background-color: rgb(255, 230, 230);
+  transition-duration: .3s;
+}
+
+
+/* Existing CSS */
+header {
+  padding: 10px;
+  background: #000000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+.logo-img {
+  width: 250px;
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+  filter: brightness(1.2) ; /* Increase brightness and contrast */
+}
+@media (max-width: 300x) {
+  .logo-img {
+    width: 200px;
+    height: auto;
+    min-height: 30px;
+    max-width: 90px;
+  }
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.date {
+  color: white;
+  text-align: center;
+}
+
+.desktop_menu ul li .dealer-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.desktop_menu ul {
+  padding: 0;
+  margin: 0;
+}
+
+.desktop_menu ul li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.desktop_menu ul li:last-child {
+  margin-right: 0;
+}
+
+.desktop_menu ul li input {
+  width: 250px;
+  height: 52px;
+  vertical-align: middle;
+}
+
+.desktop_menu ul li .dealer-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.desktop_menu ul li .dealer-link .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.desktop_menu ul li .dot {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100%;
+  margin-left: 5px;
+}
+
+.menu-icon {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .desktop_menu {
+    position: fixed !important;
+    right: -280px;
+    transition: 0.4s ease-in-out;
+    top: 64px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 280px;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 997;
+  }
+  .date {
+    margin-right: 20px;
+  }
+  .col-md-3.col-sm-3.col-3 {
+    align-content: center;
+  }
+
+  .searchBar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .desktop_menu ul li {
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 10px 0 10px 26px;
+    border-bottom: 1px solid grey;
+  }
+
+  .searchBar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: block;
+    color: white;
+    font-size: 40px;
+    margin-right: 10px;
+  }
+
+  .mobile_menu {
+    right: 0;
+    transition: 0.4s ease-in-out;
+    margin-top: 30px;
+  }
+
+  .col-md-3.col-sm-3.col-3 {
+    flex-basis: auto;
+    text-align: right;
+  }
+
+  .col-md-6.col-sm-6.col-6.text-center {
+    flex-basis: auto;
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .col-md-3.col-sm-3.col-3.text-end {
+    flex-basis: auto;
+    text-align: right;
+  }
+
+  .logo {
+    text-align: left;
+    height: auto; /* Left align */
+    max-width: 30%;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .suggestions-container {
+    position: sticky !important;
+    top: calc(100% + 10px) !important;
+    margin-top: 0px !important;
+    right: 0 !important;
+    width: 400px !important;
+    max-width: calc(100% - 20px) !important; /* Limit to the width of the viewport minus some padding */
+    background-color: #fff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 4px !important;
+    z-index: 999 !important; /* Ensure it is above the overlay */
+    max-height: 500px !important; /* Adjust max height as needed */
+    overflow-y: auto !important;
+  }
+  .InputContainer{
+    width: calc(100% - 20px) !important;
+  }
+  .overlay{
+        top: 0;
+      left: 0;
+      width: 0px !important;
+      height: 0px !important;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0 !important; /* Ensure it is below the suggestions */
+
+  }
+}
+
+
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 5px;
+  background-color: red;
+}
+
+.dot.green {
+  background-color: green;
+}
+.original-price {
+  color: #888; /* Lighter color for original price */
+  text-decoration: line-through; /* Add line through the text */
+}
+
+.discounted-price {
+  color: #ff5733; /* Color for discounted price */
+}
+
+.not-discounted-price {
+  color: #ff5733; /* Same color for non-discounted price */
+}
+
+.custom-loader {
+  width: 30px; /* Adjust the width to make the spinner smaller */
+  height: 30px; /* Adjust the height to make the spinner smaller */
+  display: grid;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 40%, #000 41%);
+  background: linear-gradient(0deg, #31B1D880 50%, #31B1D840 0) center/4px 100%, /* New color */
+    linear-gradient(90deg, #31B1D880 50%, #31B1D840 0) center/100% 4px; /* New color */
+  background-repeat: no-repeat;
+  animation: s3 1s infinite steps(12);
+}
+.custom-loader::before,
+.custom-loader::after {
+  content: "";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+
+.custom-loader::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn)
+  }
+}
+
+.labelforsearch {
+  cursor: text;
+  padding: 0px 12px;
+}
+
+.searchIcon {
+  width: 13px;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998; /* Ensure it is below the suggestions */
+}
+.suggestions-container {
+  position: absolute;
+  top: calc(100% + 10px);
+  margin-top: -10px;
+  right: 0;
+  width: 400px;
+  max-width: calc(100% - 20px); /* Limit to the width of the viewport minus some padding */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 999; /* Ensure it is above the overlay */
+  max-height: 500px; /* Adjust max height as needed */
+  overflow-y: auto;
+}
+
+
+.suggestion {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.suggestion:last-child {
+  border-bottom: none;
+}
+
+.suggestion-info {
+  display: flex;
+  align-items: center;
+}
+
+.suggestion-image {
+  width: 110px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.suggestion-details {
+  flex: 1;
+}
+
+.suggestion-name {
+  font-weight: bold;
+  font-size: 16px; /* Adjust font size as needed */
+  margin-bottom: 5px; /* Adjust spacing between name and other details */
+}
+.suggestion:hover {
+  background-color: #f5f5f5; /* Change background color on hover */
+}
+.view-all-container {
+  background-color: #007BFF; /* Set background color */
+  text-align: center; /* Center align the content */
+  padding: 10px; /* Add some padding */
+  position: sticky; /* Make the position sticky */
+  bottom: 0; /* Stick to the bottom of the suggestions container */
+}
+
+.view-all-link {
+  color: white; /* Set text color */
+  text-decoration: none; /* Remove underline from link */
+}
+.view-all-container:hover {
+   background-color: #0056b3; /* Change background color on hover */
+}

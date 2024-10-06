@@ -1,0 +1,11 @@
+footer {
+  flex-shrink: 0;
+  background-color: #000; /* Dark background color */
+  color: white; /* Text color */
+  padding: 10px 0; /* Adjust padding for better spacing */
+  width: 100%;
+}
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color:black !important;
+}

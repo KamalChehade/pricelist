@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+
+body {
+    background: #eee;
+    font-family: Assistant, sans-serif
+}
+
+.external-link {
+  cursor: pointer;
+  color: blue;
+}
+.whats-icon {
+  height: 32px;
+  width: 32px;
+  fill: #075E54;
+}
+.mt-5 {
+  margin-top: 1.2rem !important;
+}

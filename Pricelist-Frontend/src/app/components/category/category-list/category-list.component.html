@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="SearchInputContainer">
+    <input
+      type="text"
+      name="text"
+      class="SearchInput"
+      id="SearchInput"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchInput()"
+      placeholder="Search Categories"
+    />
+
+    <label for="SearchInput" class="labelforsearch">
+      <svg viewBox="0 0 512 512" class="searchIcon">
+        <path
+          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">
+          <fa-icon
+            matTooltip="Add"
+            matTooltipPosition="left"
+            class="add-icon"
+            [icon]="faSquarePlus"
+            (click)="openAddDialog()"
+          ></fa-icon>
+        </th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Subcategory (if available)</th>
+        <th scope="col">products</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="filteredCategories.length > 0; else noCategoriesAvailable">
+        <tr *ngFor="let c of filteredCategories; let i = index">
+          <td scope="row">{{ i + 1 }}</td>
+          <td scope="row">{{ c.name }}</td>
+           <td>
+            <i
+              class="fa fa-eye view-products-icon"
+              matTooltip="View Subcategory"
+              (click)="openSubcategoryDialog(c.id)"
+              aria-hidden="true"
+            ></i>
+          </td>
+          <td>
+            <i
+              class="fa fa-eye view-products-icon"
+              matTooltip="View Products"
+              (click)="openProductListDialog(c.id)"
+              aria-hidden="true"
+            ></i>
+          </td>
+          <td>
+            <fa-icon
+              matTooltip="Update"
+              matTooltipPosition="left"
+              class="edit-icon"
+              [icon]="faPencil"
+              (click)="openEditDialog(c)"
+            ></fa-icon>
+            <fa-icon
+              matTooltip="Delete"
+              matTooltipPosition="right"
+              class="delete-icon"
+              [icon]="faTrash"
+              (click)="deleteCategory(c.id)"
+              id="trash-icon"
+            ></fa-icon>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noCategoriesAvailable>
+        <tr>
+          <td colspan="5">No categories are available!</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

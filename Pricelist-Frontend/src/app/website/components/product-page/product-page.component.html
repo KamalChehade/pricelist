@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Product Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="product-page.component.scss">
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="products">
+    <div class="container">
+      <!-- Pagination and Filter Dropdown on the same level -->
+      <div class="pagination-filter-container">
+        <div class="pagination-">
+          <mat-paginator
+            [length]="totalRecords"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizes"
+            (page)="onPageChanged($event)">
+          </mat-paginator>
+        </div>
+        <div class="filter-dropdown">
+          <select #filterSelect (change)="applyFilter(filterSelect.value)">
+            <option value="all">All Products</option>
+            <option value="AZ">A to Z</option>
+            <option value="ZA">Z to A</option>
+            <option value="Ascending">Price: Low to High</option>
+            <option value="Descending">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product-items">
+        <!-- Loop through products -->
+        <div class="product" *ngFor="let product of productsToShow" [style.display]="product.status ? 'block' : 'none'">
+          <div class="product-content" (click)="goToProductDescription(product.id)">
+            <div class="product-img">
+              <!-- Display the first image from the images array -->
+              <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]" [alt]="product.name" />
+            </div>
+            <div class="product-btns">
+              <button type="button" class="btn-cart" (click)="openQuickView($event, product.id)"> Quick View
+                <span><i class="fas fa-search"></i></span>
+              </button>
+              <button type="button" class="btn-buy" (click)="sendWhatsAppMessage($event, product)">
+                <span>Buy Now <i class="fab fa-whatsapp"></i></span> <!-- Changed to WhatsApp icon -->
+              </button>
+            </div>
+          </div>
+
+          <div class="product-info">
+            <a href="#" class="product-name">{{ product.name }}</a>
+            <p class="product-price">{{ product.price }} $</p>
+          </div>
+
+          <!-- Optional: Display discount info if available -->
+          <div class="off-info" *ngIf="product.onDiscount">
+            <h2 class="sm-title">{{ product.discountPercentage }} %</h2>
+          </div>
+        </div>
+        <!-- End of product loop -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

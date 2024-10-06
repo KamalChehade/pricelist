@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Promos for Product: {{ productName }}</h2>
+
+<mat-dialog-content>
+  <div class="container-fluid">
+    <!-- Promo Table -->
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>
+            <fa-icon
+            matTooltip="Add Promo"
+            matTooltipPosition="left"
+            class="add-icon"
+            [icon]="faSquarePlus"
+            (click)="openAddPromoDialog(productId)"></fa-icon>
+          </th>
+          <th>Promo Type</th>
+           <th>Promo Price</th>
+          <th>Additional Product Name</th>
+          <th>Additional Product Quantity</th>
+          <th>Gift Product Name</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over promos array -->
+        <tr *ngFor="let promo of promos; let i = index">
+          <td></td>
+          <td>{{ promo.promoType }}</td>
+          <td>{{ promo.promoPrice || 'N/A' }}</td>
+          <td>{{ promo.additionalProductName || 'None' }}</td>
+          <td>{{ promo.additionalProductQuantity || 'N/A' }}</td>
+          <td>{{ promo.giftProductName || 'None' }}</td>
+          <td>{{ promo.description || 'No description' }}</td>
+          <td>
+            <fa-icon
+              matTooltip="Edit Promo"
+              matTooltipPosition="left"
+              class="edit-icon"
+              [icon]="faPencil"
+              (click)="openEditPromoDialog(promo)"
+            ></fa-icon>
+            <fa-icon
+              matTooltip="Delete Promo"
+              matTooltipPosition="right"
+              class="delete-icon"
+              [icon]="faTrash"
+              id="trash-icon"
+              (click)="deletePromo(promo)"
+            ></fa-icon>
+          </td>
+        </tr>
+        <!-- End of *ngFor -->
+
+        <!-- Handle case where no promos are available -->
+        <tr *ngIf="promos.length === 0">
+          <td colspan="9">
+            <p>No promos available for this product.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="red-button" style="color: white" (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

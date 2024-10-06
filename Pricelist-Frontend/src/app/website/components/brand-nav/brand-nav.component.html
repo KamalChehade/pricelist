@@ -1,0 +1,19 @@
+<div class="brand-nav">
+  <div class="swiper-container myProductSwiper" #swiperContainer>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let brand of brands">
+        <div class="brand-item" (click)="onBrandClick(brand.id)">
+          <img
+            [src]="brand.brandImage"
+            alt="Brand Image"
+            [class.selected]="selectedBrandId === brand.id"
+            [style.border-color]="selectedBrandId === brand.id ? selectedColor : 'transparent'"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>

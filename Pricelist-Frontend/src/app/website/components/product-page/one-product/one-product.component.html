@@ -1,0 +1,38 @@
+<div *ngIf="product" class="product-container">
+  <!-- Product Title -->
+ 
+  <!-- Product Images (using Swiper) -->
+  <div class="swiper-container mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let image of product.images">
+        <img [src]="image" alt="Product Image">
+      </div>
+    </div>
+    <!-- Swiper Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Swiper Navigation Buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+
+  <!-- Other Product Details -->
+  <div class="product-details">
+    <!-- Display product details here -->
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <!-- Add other details as needed -->
+  </div>
+
+  <!-- Buttons to Open Dialogs -->
+  <button mat-button (click)="openAdvertisementDialog()">View Advertisement</button>
+  <button mat-button (click)="openProductImagesDialog()">View Product Images</button>
+
+  <!-- Button to go back -->
+  <button mat-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> Go Back
+  </button>
+</div>
+
+<div *ngIf="!product">
+  <p>No product found.</p>
+</div>

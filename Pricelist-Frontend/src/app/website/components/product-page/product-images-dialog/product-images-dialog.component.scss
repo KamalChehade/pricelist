@@ -1,0 +1,104 @@
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  /* Your styles here */
+  background-color: rgb(0,0,0,0.6) !important;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+.myProductSwiper {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+ }
+.swiper-slide {
+  text-align: center;
+  padding: 20px;
+}
+
+.product-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.product-item pinch-zoom img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 500px;
+  height: auto;
+ }
+
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.swiper-pagination {
+  bottom: 10px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white;
+}
+
+.swiper-scrollbar {
+  display: none;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent;
+}
+.back-button {
+  position: fixed;
+   top: 70px;
+   left: 45px;
+  font-size: 40px; /* Increase the size of the icon */
+  color: cyan;
+  text-decoration: none;
+  cursor: pointer; /* Change cursor to pointer */
+  z-index: 888;
+}
+
+.back-button:hover {
+  color: white;
+}
+
+.back-button:focus {
+  outline: none;
+}
+@media (max-width: 768px) {
+  .myProductSwiper {
+    width: 100%;
+    height: 900px;
+    overflow: hidden;
+   }
+  .product-item {
+    position: relative;
+  }
+
+  .product-item pinch-zoom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-item pinch-zoom img {
+    max-width: none;
+    max-height: none;
+    width: auto;
+    height: auto;
+    transform-origin: center center;
+}
+}

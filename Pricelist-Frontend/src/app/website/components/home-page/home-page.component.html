@@ -1,0 +1,27 @@
+<div class="loading-container" *ngIf="isLoadingCategories">
+  <!-- Loading indicator -->
+  <div class="center-loading">
+    <app-loading-spinner size="2.8rem" color="#183153"></app-loading-spinner>
+  </div>
+</div>
+
+<div *ngIf="!isLoadingCategories">
+  <ng-container *ngIf="categories.length > 0; else noCategories">
+    <!-- Display categories -->
+    <div class="container">
+      <section *ngFor="let category of categories">
+        <div>
+          <button (click)="navigateToSubcategory(category.id)">
+            <span>{{ category.name }}</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+
+  <ng-template #noCategories>
+    <div class="no-categories-found">
+      <p>No categories found.</p>
+    </div>
+  </ng-template>
+</div>
